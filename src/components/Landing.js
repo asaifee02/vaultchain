@@ -1,17 +1,18 @@
-import React from 'react'
+import React from 'react';
 import './Landing.css';
-import Person from './Person'
-import LandingAboutProj from './LandingAboutProj'
-import Navbar from './Navbar'
-import Footer from './Footer'
+import Developer from './Developer';
+import LandingAboutProj from './LandingAboutProj';
+import Navbar from './Navbar';
+import Footer from './Footer';
 import LandingHeadBg from './LandingHeadBg'
 
-export default function landing() {
+export default function Landing() {
     return (
         <>
             <Navbar/>
             <div className="wrapper">
                 <LandingHeadBg/>
+                
                 <div className="section features-6">
                     <div className="container">
                         <LandingAboutProj/>
@@ -24,11 +25,12 @@ export default function landing() {
                                 <h3 className="display-3">ABOUT DEVELOPERS</h3>
                             </div>
                         </div>
-                        <div className="row my-5">
-                            <Person name="Adnan Saifee" email="Adnan Email" />
-                            <Person name="Darshan Rayala" email="Darshan Email" />
-                            <Person name="Isha Kushwah" email="Isha Email" />
-                            <Person name="Varija Gupte" email="Varija Email" />
+
+                        <div className="row">
+                            <Developer name="Adnan Saifee" email="Adnan Email" />
+                            <Developer name="Darshan Rayala" email="Darshan Email" />
+                            <Developer name="Varija Gupte" email="Varija Email" />
+                            <Developer name="Isha Kushwah" email="Isha Email" />
                         </div>
                     </div>
                 </div>
