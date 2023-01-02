@@ -1,6 +1,5 @@
 import React,{useState} from 'react'
 import copy from "copy-to-clipboard";
-import { Heading, Input1, Input2, Container, Button } from './ClipStyle'
 
 const Clipboard = () => {
 	const [copyText, setCopyText] = useState('');
