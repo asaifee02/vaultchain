@@ -1,20 +1,8 @@
 import React from 'react'
 import {
     MDBCol,
-    MDBContainer,
     MDBRow,
-    MDBCard,
-    MDBCardText,
-    MDBCardBody,
-    MDBCardImage,
-    MDBBtn,
-    MDBBreadcrumb,
-    MDBBreadcrumbItem,
-    MDBProgress,
-    MDBProgressBar,
-    MDBIcon,
-    MDBListGroup,
-    MDBListGroupItem
+    MDBCardText
 } from 'mdb-react-ui-kit';
 
 export default function ProfilePersonal(props) {

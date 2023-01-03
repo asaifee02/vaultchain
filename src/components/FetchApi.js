@@ -9,7 +9,7 @@ export default function FetchApi() {
   // Function to collect data
   const getApiData = async () => {
     setLoading(true);
-    const response = await axios.get('https://vaultchain.asaifee.ml/user/info')
+    const response = await axios.get('https://api.asaifee.ml/user/info')
     
     setUsers(response.data);
     setLoading(false);

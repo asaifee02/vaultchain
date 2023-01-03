@@ -1,26 +1,31 @@
-import { BrowserRouter as Router, Switch, 
-  Route, Redirect,} from "react-router-dom";
-import './App.css';
+import { useAuth0 } from "@auth0/auth0-react";
+import React from "react";
+import { Switch, Route } from "react-router-dom";
 import Landing from './components/Landing';
 import Dashboard from "./components/Dashboard";
 import Files from "./components/Files";
-import FetchApi from "./components/FetchApi";
+import { CallbackPage } from "./components/callback-page.js";
+import { PageLoader } from "./components/page-loader.js";
+import { ProtectedRoute } from "./components/protected-route";
+import './App.css';
 
+export default function App() {
+  const { isLoading } = useAuth0();
 
-function App() {
+  if (isLoading) {
+    return (
+      <div>
+        <PageLoader />
+      </div>
+    );
+  }
+
   return (
-    <>
-      <Router>
-        <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/myfiles" component={Files} />
-        <Route exact path="/fetch" component={FetchApi} />
-        </Switch>
-      </Router>
-      {/* <Landing/> */}
-    </>
+    <Switch>
+      <Route path="/" exact component={Landing} />
+      <ProtectedRoute path="/dashboard" component={Dashboard} />
+      <ProtectedRoute path="/myfiles" component={Files} />
+      <Route path="/callback" component={CallbackPage} />
+    </Switch>
   );
 }
-
-export default App;
