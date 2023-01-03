@@ -1,4 +1,5 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
+import axios from 'axios';
 import {
   MDBCol,
   MDBContainer,
@@ -22,24 +23,33 @@ import copy from "copy-to-clipboard";
 import Files from './Files'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
-export default function Dashboard(props) {
-  const copyText = "Hello world!" 
-  // + {props.name};
+export default function Dashboard() {
+  const [loading, setLoading] = useState(false);
+  const [users, setUsers] = useState([]);
 
-	const cpyToClip= () => {
-	copy(copyText);
-	alert(`You have copied "${copyText}"`);
+  // Function to collect data
+  const getApiData = async () => {
+    setLoading(true);
+    const response = await axios.get('https://vaultchain.asaifee.ml/user/info');
+    response.data.sub = response.data.sub.replace('auth0|', '');
+
+    setUsers(response.data);
+    setLoading(false);
+  };
+  useEffect(() => {
+    getApiData();
+  }, []);
+
+  const cpyToClip= () => {
+    copy(users.sub);
+    alert(`You have copied "${users.sub}"`);
 	}
-
-  const goToFiles=()=>{
-    <Files/>
-  }
 
   return (
   <div className='DashParent'>
 
-    <div class="area" >
-            <ul class="circles">
+    <div className="area" >
+            <ul className="circles">
                     <li></li>
                     <li></li>
                     <li></li>
@@ -53,7 +63,7 @@ export default function Dashboard(props) {
             </ul>
     </div >
     
-    <div class="context">
+    <div className="context">
     <section>
         {/* style={ { position: 'relative'} }> */}
         {/* <div class="backdrop-blur-sm"> */}
@@ -74,20 +84,22 @@ export default function Dashboard(props) {
           </MDBRow> */}
           {/* End Navbar */}
           <MDBRow>
-            <MDBCol lg="4">
+            <MDBCol lg="5">
               <MDBCard className="mb-4 bg-dark"> {/* bg change */}
                 <MDBCardBody className="text-center">
                   <div className='nicknameShow'>
-                  <p style={{fontSize:"20px",textAlign:"left"}}>Welcome, Darshan{props.nickname} </p>
+                  <p style={{fontSize:"20px",textAlign:"left"}}>Welcome,{users.nickname} </p>
                   </div>
+                  {/* src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" */}
                   <MDBCardImage
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                    src={users.picture}
                     alt="avatar"
                     className="rounded-circle"
                     style={{ width: '150px' }}
                     fluid />
-                  {/* <p className="text-muted mb-1">{props.name}hello</p> */}
-                  <p className='uid my-3' style={{fontSize:"20px",float:"center",margin:"0px"}} onClick={cpyToClip}>ID:{props.id} 23580987390  <ContentCopyIcon/> </p>
+                  {/* <p className="text-muted mb-1">{users.name}hello</p> */}
+                  <p className='uid my-3' style={{fontSize:"14px",float:"center",margin:"0px"}} onClick={cpyToClip}>ID : {users.sub} &nbsp; <ContentCopyIcon style={{height:'15px',width:'15px'}}/> </p>
+                  {/* temp id :634533525615e6albdb5228523580987390 */}
                   <div className="d-flex justify-content-center mb-2">
                     {/* <MDBBtn>Follow</MDBBtn>
                     <MDBBtn>My Files</MDBBtn> */}
@@ -108,12 +120,12 @@ export default function Dashboard(props) {
                     {/* Email */}
                     <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3 bg-dark"> {/*bg change*/}
                       <MDBIcon fas icon="envelope fa-lg" className='bg-blue' />
-                      <MDBCardText className="text-cyan mx-3">{props.email}email</MDBCardText>
+                      <MDBCardText className="text-cyan mx-3">{users.email}email</MDBCardText>
                     </MDBListGroupItem>
                     {/* Github */}
                     <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3 bg-dark"> {/*bg change*/}
                       <MDBIcon fab icon="github fa-lg" className='bg-blue'/>
-                      <MDBCardText className="text-cyan mx-3">{props.git}github</MDBCardText>
+                      <MDBCardText className="text-cyan mx-3">{users.git}github</MDBCardText>
                     </MDBListGroupItem>
                     
                     {/* Twitter */}
@@ -136,14 +148,14 @@ export default function Dashboard(props) {
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
-            <MDBCol lg="8">
+            <MDBCol lg="6">
               <MDBCard className="mb-4 bg-dark"> {/* bg change */} 
                 <MDBCardBody>
-                  <ProfilePersonal parameter="Name" value="Darshan Rayala"/>
+                  <ProfilePersonal parameter="Name" value={users.name}/>
                   <hr/>
                   <ProfilePersonal parameter="DOB" value="23-Apr-01"/>
                   <hr />
-                  <ProfilePersonal parameter="Email" value="darsh@gmail.com"/>
+                  <ProfilePersonal parameter="Email" value={users.email}/>
   
   
                 </MDBCardBody>

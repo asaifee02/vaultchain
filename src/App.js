@@ -4,6 +4,7 @@ import './App.css';
 import Landing from './components/Landing';
 import Dashboard from "./components/Dashboard";
 import Files from "./components/Files";
+import FetchApi from "./components/FetchApi";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/" component={Landing} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/myfiles" component={Files} />
+        <Route exact path="/fetch" component={FetchApi} />
         </Switch>
       </Router>
       {/* <Landing/> */}
