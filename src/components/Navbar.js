@@ -31,7 +31,12 @@ export default function Navbar() {
               )}
               {isAuthenticated && (
                 <>
-                  <LogoutButton />
+                  <li className="nav-item"><a href="/dashboard">
+                    <button type="button" className="btn btn-info me-2">Dashboard</button>
+                  </a></li>
+                  <li className="nav-item">
+                    <LogoutButton />
+                  </li>
                 </>
               )}
             </ul>

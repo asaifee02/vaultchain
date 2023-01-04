@@ -52,7 +52,7 @@ export const LogoutButton = () => {
   };
 
   return (
-    <button type="button" className="btn btn-outline-danger" onClick={handleLogout}>
+    <button type="button" className="btn btn-danger" onClick={handleLogout}>
       Log Out
     </button>
   );

@@ -19,6 +19,7 @@
     "axios": "^1.2.2",
     "babel-plugin-macros": "^3.1.0",
     "file-upload-with-preview": "^5.0.8",
+    "js-file-download": "^0.4.12",
     "mdb-react-ui-kit": "^5.1.0",
     "node-sass": "^7.0.3",
     "react": "^18.2.0",
