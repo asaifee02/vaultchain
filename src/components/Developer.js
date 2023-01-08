@@ -7,8 +7,7 @@ export default function Developer(props) {
             <div className="info">
               <div className="icon icon-lg icon-shape icon-shape-success shadow rounded-circle">
                 <i className="ni ni-atom">
-                  {/* <img src={process.env.PUBLIC_URL + "new logo.png"} alt="app logo" style="" /> */}
-            
+                  <img src={process.env.PUBLIC_URL + props.img} className="devI" id="devImg" alt="dev logo" style={{width:'100%', aspectRatio:1.2, objectFit:'contain'}} />
                 </i>
               </div>
               <h6 className="info-title text-uppercase text-success">{props.name}</h6>

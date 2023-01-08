@@ -27,10 +27,10 @@ export default function Landing() {
               </div>
 
               <div className="row">
-                <Developer name="Adnan Saifee" email="saifeeas@rknec.edu" />
-                <Developer name="Darshan Rayala" email="rayaladr@rknec.edu" />
-                <Developer name="Varija Gupte" email="guptevv@rknec.edu" />
-                <Developer name="Isha Kushwah" email="kushwahib@rknec.edu" />
+                <Developer name="Adnan Saifee" email="saifeeas@rknec.edu" img="AdnanS.png"/>
+                <Developer name="Darshan Rayala" email="rayaladr@rknec.edu" img="DarshanR.png"/>
+                <Developer name="Varija Gupte" email="guptevv@rknec.edu" img="VarijaG.png"/>
+                <Developer name="Isha Kushwah" email="kushwahib@rknec.edu" img="IshaK.png" />
               </div>
             </div>
           </div>

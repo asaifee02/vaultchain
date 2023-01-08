@@ -17,15 +17,25 @@ import './DashboardBG.css'
 import copy from "copy-to-clipboard";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { LogoutButton } from './Buttons'
+import { callApi, createConfig } from "../services/vaultchain-api";
 import Logo from "./Logo";
 
 export default function Dashboard() {
-  const { user, loginWithPopup, isAuthenticated } = useAuth0();
+  const { user, loginWithPopup, isAuthenticated, getAccessTokenSilently } = useAuth0();
+  
   if (!user) {
     return null;
   }
   
-  const uid = user.sub.replace('auth0|', '')
+  const keysCreated = async () => {
+    const config = await createConfig("/api/user/setup", "GET", await getAccessTokenSilently())
+    const { data, error } = await callApi({config})
+    if (data) console.log('Data: ' + data.error || data.msg)
+    if (error) console.log('Error: ' + error.message)
+  }
+
+  keysCreated()
+  const uid = user.sub.replace(/.*\|/, '')
 
   const cpyToClip = async () => {
     await loginWithPopup({

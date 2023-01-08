@@ -101,6 +101,13 @@ p {
   margin-bottom: 1rem;
 }
 
+img.devI:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.5);
+  transition: transform .5s ease
+}
+
 abbr[title],
 abbr[data-original-title] {
   text-decoration: underline;
@@ -16197,7 +16204,7 @@ main {
 }
 
 .info .info-title {
-  margin: 25px 0 15px;
+  margin: 20px 25px 15px;
   font-weight: 600;
 }
 
@@ -18870,13 +18877,14 @@ textarea[resize="horizontal"] {
 } */
 
 .icon-lg {
-  width: 4rem;
-  height: 4rem;
+  width: 10rem;
+  height: 10rem;
 }
 
 .icon-lg i,
 .icon-lg svg {
   font-size: 3.25rem;
+  
 }
 
 /* .icon-lg+.icon-text {
@@ -21120,6 +21128,7 @@ p {
 
 .description {
   font-size: 0.875rem;
+  margin: -10px 25px 15px;
 }
 
 .heading {

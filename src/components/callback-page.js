@@ -9,14 +9,14 @@ export const CallbackPage = () => {
   if (error) {
     return (
       <div>
-      <Navbar />
-          <h1 id="page-title">
-            Error
-          </h1>
-          <p id="page-description">
-            <span>{error.message}</span>
-          </p>
-      <Footer />
+        <Navbar />
+        <h1 id="page-title">
+          Error
+        </h1>
+        <p id="page-description">
+          <span>{error.message}</span>
+        </p>
+        <Footer />
       </div>
     );
   }
@@ -27,4 +27,6 @@ export const CallbackPage = () => {
       <Footer />
     </div>
   );
+
+
 };
