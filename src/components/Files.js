@@ -8,7 +8,7 @@ import './FilesBG.css';
 import Logo from "./Logo.js";
 
 export default function Files() {
-  const { getAccessTokenSilently } = useAuth0();
+  const { user, loginWithPopup, getAccessTokenSilently } = useAuth0();
 
   // State for getting user's files stored in IPFS
   const [files, setFiles] = useState([]);
@@ -91,6 +91,7 @@ export default function Files() {
   const handleSharing = async (e, path) => {
     e.preventDefault()
 
+    await loginWithPopup({ prompt: "login", display: 'popup', login_hint: user.email })
     const config = await createConfig(`/api/files/share${path}`, "POST", await getAccessTokenSilently())
     config.data = new URLSearchParams({
       recipient: shareID
