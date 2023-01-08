@@ -19,11 +19,11 @@ export default function LandingHead() {
 
       <div className="page-header">
           <div className="container shape-container d-flex align-items-center py-lg">
-              <div className="col px-0">
+              <div className="col px-0" style={{zIndex:100000000}}>
                   <div className="row align-items-center justify-content-center">
                       <div className="col-lg-6 text-center">
-                          <h2 className="text-white display-1">Sharing and Storing Files?</h2>
-                          <h3 className="display-4 font-weight-normal text-white">Your task is easy now!</h3>
+                          <h2 className="text-white display-1">Want to securely store and share your files?</h2>
+                          <h3 className="display-4 font-weight-normal text-white">We've got you covered!</h3>
                       </div>
                   </div>
               </div>

@@ -15,7 +15,7 @@ export const LoginButton = () => {
   return (
     <li className="nav-item">
       <button className="btn btn-neutral" onClick={handleLogin}>
-        Log In
+        Sign In
       </button>
     </li>
   );

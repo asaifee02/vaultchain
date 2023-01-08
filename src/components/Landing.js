@@ -6,19 +6,19 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import LandingHeadBg from './LandingHeadBg'
 
-export default function Landing() {
-    return (
+export default function Landing() {  
+  return (
       <>
         <Navbar />
-        <div className="wrapper">
+        <div className="wrapper" style={{zIndex:100000000}}>
           <LandingHeadBg />
 
-          <div className="section features-6">
+          <div className="section features-6" style={{zIndex:100000000}}>
             <div className="container">
               <LandingAboutProj />
             </div>
           </div>
-          <div className="section features-1">
+          <div className="section features-1" style={{zIndex:100000000}}>
             <div className="container">
               <div className="row">
                 <div className="col-md-4 ">
@@ -27,10 +27,10 @@ export default function Landing() {
               </div>
 
               <div className="row">
-                <Developer name="Adnan Saifee" email="Adnan Email" />
-                <Developer name="Darshan Rayala" email="Darshan Email" />
-                <Developer name="Varija Gupte" email="Varija Email" />
-                <Developer name="Isha Kushwah" email="Isha Email" />
+                <Developer name="Adnan Saifee" email="saifeeas@rknec.edu" />
+                <Developer name="Darshan Rayala" email="rayaladr@rknec.edu" />
+                <Developer name="Varija Gupte" email="guptevv@rknec.edu" />
+                <Developer name="Isha Kushwah" email="kushwahib@rknec.edu" />
               </div>
             </div>
           </div>

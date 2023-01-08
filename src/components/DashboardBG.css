@@ -9,15 +9,26 @@ body{
     font-family: 'Exo', sans-serif;
 }
 
+.blur{
+  color: transparent;
+  text-shadow: 0 0 10px white;
+}
+
 .DashParent{
     height: 150vh;
     background: #4e54c8; 
 }
+.dashlogo{
+    margin-top: 8vh;
+    margin-left: 20vh;
+}
 
 .context {
     width: 100%;
-    position: absolute;
-    top:10vh;
+    position: relative;
+    top:0px;
+    margin-top: -10vh;
+    /* margin-left: 10vh; */
     height: 100%;
     
 }

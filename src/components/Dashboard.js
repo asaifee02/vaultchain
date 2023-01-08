@@ -8,8 +8,6 @@ import {
   MDBCardText,
   MDBCardBody,
   MDBCardImage,
-  MDBProgress,
-  MDBProgressBar,
   MDBIcon,
   MDBListGroup,
   MDBListGroupItem
@@ -19,17 +17,35 @@ import './DashboardBG.css'
 import copy from "copy-to-clipboard";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { LogoutButton } from './Buttons'
+import Logo from "./Logo";
 
 export default function Dashboard() {
-  const { user } = useAuth0();
-
+  const { user, loginWithPopup, isAuthenticated } = useAuth0();
   if (!user) {
     return null;
   }
-
+  
   const uid = user.sub.replace('auth0|', '')
-  const cpyToClip = () => {
-    copy(uid, { message: `Copied: ${uid}` });
+
+  const cpyToClip = async () => {
+    await loginWithPopup({
+      prompt: "login",
+      max_age: 30,
+      timeoutInSeconds: 30,
+      display: 'popup',
+      login_hint: user.email
+    })
+    .then(() => {
+      if (isAuthenticated) {
+        copy(uid, {
+          debug: true,
+          message: 'Press #{key} to copy UID:',
+          format: 'text/plain'
+        })
+      } else {
+        console.log('Not authenticated.')
+      }
+    }, err => alert(err))
 	}
 
   return (
@@ -50,53 +66,29 @@ export default function Dashboard() {
       </div >
 
       <div className="context">
+        <div className="dashlogo">
+          <Logo/>
+        </div>
         <section>
-          {/* style={ { position: 'relative'} }> */}
-          {/* <div class="backdrop-blur-sm"> */}
           <MDBContainer className="py-5">
-            {/* Navbar */}
-            {/* <MDBRow>
-            <MDBCol>
-              <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
-                <MDBBreadcrumbItem>
-                  <a href='#'>Home</a>
-                </MDBBreadcrumbItem>
-                <MDBBreadcrumbItem>
-                  <a href="#">User</a>
-                </MDBBreadcrumbItem>
-                <MDBBreadcrumbItem active>User Profile</MDBBreadcrumbItem>
-              </MDBBreadcrumb>
-            </MDBCol>
-          </MDBRow> */}
-            {/* End Navbar */}
             <MDBRow>
               <MDBCol lg="5">
-                <MDBCard className="mb-4 bg-dark"> {/* bg change */}
+                <MDBCard className="mb-4 bg-dark" style={{zIndex:100000000}}> {/* bg change */}
                   <MDBCardBody className="text-center">
                     <div className='nicknameShow'>
                       <p style={{ fontSize: "20px", textAlign: "left" }}>Welcome, {user.nickname} </p>
                     </div>
                     {/* src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" */}
-                    <MDBCardImage
-                      src={user.picture}
-                      alt="avatar"
-                      className="rounded-circle"
-                      style={{ width: '150px' }}
-                      fluid />
-                    {/* <p className="text-muted mb-1">{user.name}hello</p> */}
-                    <p className='uid my-3' style={{ fontSize: "14px", float: "center", margin: "0px" }} onClick={cpyToClip}>ID: {uid} &nbsp; <ContentCopyIcon style={{ height: '15px', width: '15px' }} /> </p>
-                    {/* temp id :634533525615e6albdb5228523580987390 */}
-                    <div className="d-flex justify-content-center mb-2">
-                      {/* <MDBBtn>Follow</MDBBtn>
-                    <MDBBtn>My Files</MDBBtn> */}
-                      <a href="/myfiles">
-                        <button type="button" className="btn btn-primary mx-3">My Files</button>
-                      </a>
-                      {/* <a href="https://vaultchain.asaifee.ml/logout">
-                        <button type="button" className="btn btn-outline-danger">Logout</button>
-                      </a> */}
-                      <LogoutButton />
-                    </div>
+                    <MDBCardImage src={user.picture} alt="avatar" className="rounded-circle" style={{ width: '150px' }} fluid />
+                        {/* <p className="text-muted mb-1">{user.name}hello</p> */}
+                        <p className='uid blur my-3' id="blurId" style={{ fontSize: "14px", float: "center", margin: "0px", cursor:"no-drop" }} onClick={cpyToClip}> ID: {uid}  &nbsp; <ContentCopyIcon style={{ height: '15px', width: '15px' }} /></p>
+                        {/* temp id :634533525615e6albdb5228523580987390 */}
+                        <div className="d-flex justify-content-center mb-2">
+                          <a href="/myfiles">
+                            <button className="btn btn-primary mx-3">My Files</button>
+                          </a>
+                          <LogoutButton />
+                        </div>
                   </MDBCardBody>
                 </MDBCard>
 
@@ -105,14 +97,18 @@ export default function Dashboard() {
                     <MDBListGroup flush="true" className="rounded-3">
                       {/* Email */}
                       <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3 bg-dark"> {/*bg change*/}
-                        <MDBIcon fas icon="envelope fa-lg" className='bg-blue' />
-                        <MDBCardText className="text-cyan mx-3">Email: {user.email}</MDBCardText>
+                        <MDBIcon fas icon="envelope fa-lg " className='bg-blue' />
+                        <a href = {'mailto:'+user.email} >
+                        <MDBCardText className="text-cyan" style={{ fontSize: "14px", textAlign:"left", paddingRight:"130px", offset:"0px", margin: "10px" }}>Email &ensp; : &ensp; {user.email}</MDBCardText>
+                        </a>
                       </MDBListGroupItem>
                       {/* Github */}
-                      {/* <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3 bg-dark">
+                      <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3 bg-dark">
                         <MDBIcon fab icon="github fa-lg" className='bg-blue' />
-                        <MDBCardText className="text-cyan mx-3">{user.git}github</MDBCardText>
-                      </MDBListGroupItem> */}
+                        <a href = "https://github.com/rayaladarshan/ipfs-react-frontend" target="_blank" rel="noreferrer" >
+                        <MDBCardText className="text-cyan" style={{ fontSize: "14px", textAlign:"left", paddingRight:"160px", offset:"0px", margin: "10px" }}>Github &ensp; : &ensp; @VaultChain</MDBCardText>
+                        </a>
+                      </MDBListGroupItem>
 
                       {/* Twitter */}
                       {/* <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3 bg-gradient-dark">
@@ -150,7 +146,7 @@ export default function Dashboard() {
                 <MDBRow>
 
                   {/* Files Card */}
-                  <MDBCol md="12">
+                  {/* <MDBCol md="12">
                     <MDBCard className="mb-4 bg-dark mb-md-0">
                       <MDBCardBody>
                         <MDBCardText className="mb-4"><span className="text-primary font-italic me-1">assigment</span> Project Status</MDBCardText>
@@ -158,11 +154,6 @@ export default function Dashboard() {
                         <MDBProgress className="rounded">
                           <MDBProgressBar width={80} valuemin={0} valuemax={100} />
                         </MDBProgress>
-
-                        {/* <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>Website Markup</MDBCardText>
-                      <MDBProgress className="rounded">
-                        <MDBProgressBar width={72} valuemin={0} valuemax={100} />
-                      </MDBProgress> */}
 
                         <MDBCardText className="mt-4 mb-1" style={{ fontSize: '.77rem' }}>One Page</MDBCardText>
                         <MDBProgress className="rounded">
@@ -180,14 +171,13 @@ export default function Dashboard() {
                         </MDBProgress>
                       </MDBCardBody>
                     </MDBCard>
-                  </MDBCol>
+                  </MDBCol> */}
 
 
                 </MDBRow>
               </MDBCol>
             </MDBRow>
           </MDBContainer>
-          {/* </div> */}
         </section>
 
       </div>

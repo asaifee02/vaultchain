@@ -5,6 +5,7 @@ import { callApi, createConfig } from "../services/vaultchain-api";
 import { LogoutButton } from './Buttons'
 import { PageLoader } from "./page-loader.js";
 import './FilesBG.css';
+import Logo from "./Logo.js";
 
 export default function Files() {
   const { getAccessTokenSilently } = useAuth0();
@@ -111,13 +112,19 @@ export default function Files() {
     );
   } else {
     return (
+      <>
       <div className='FilesParent'>
         <div className="context">
           <section className="">
             <div className="container py-4 h-100">
               <div className="row d-flex h-100">
                 <div className="col-md-12 col-xl-10">
-                  <div className="card text-bg-light">
+                  <div>
+                    <Logo/>
+                    <hr/>
+                  </div>
+                  <hr/>
+                  <div className="card text-bg-light" style={{zIndex:100000000}}>
                     <div className="card-header p-3">
                       <span style={{ float: "right", margin: "0px" }}>
                         <a href="/dashboard">
@@ -146,7 +153,7 @@ export default function Files() {
             <div className="container py-4 h-100">
               <div className="row d-flex h-100">
                 <div className="col-md-12 col-xl-10">
-                  <div className="card text-bg-light">
+                  <div className="card text-bg-light" style={{zIndex:100000000}}>
                     <div className="card-header p-3">
                       <h5 className="mb-0"><i className="bi bi-card-list me-2"></i>Uploaded Files</h5>
                     </div>
@@ -201,6 +208,7 @@ export default function Files() {
           </section>
         </div>
       </div>
+      </>
     )
   }
 }

@@ -8,7 +8,7 @@ export default function LandingInfo() {
           <div className="info info-horizontal info-hover-primary">
             <div className="description pl-4">
               <h5 className="title">Message For Users</h5>
-              <p>The time has come when users can store and share contents with highest level of safety.This is a user friendly decentralised platform ensuring confidentiality.</p>
+              <p>The time has come when users can store and share contents with highest level of safety. This is a user friendly decentralised platform ensuring confidentiality and integrity.</p>
               {/* <!--<a href="#" className="text-info">Learn more</a>--> */}
             </div>
           </div>
@@ -16,7 +16,7 @@ export default function LandingInfo() {
             <div className="description pl-4">
               <h5 className="title">About the Application</h5>
               <p>A hardware accelerated, cryptographically secure, digitally verifiable and distributed Data Storage and Data Sharing system using Hardware Security Module (HSM), Hashicorp Vault and InterPlanetary File System (IPFS).</p>
-              <p>This application can be used for user authentication and authorization, securly uploading ,sharing and downloading all types of files.</p>
+              <p>This application can be used for user authentication and authorization, securly uploading, sharing and downloading all types of files.</p>
               {/* <!--<a href="#" className="text-info">Learn more</a>--> */}
             </div>
           </div>
